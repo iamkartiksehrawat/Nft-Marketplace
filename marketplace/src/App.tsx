@@ -6,16 +6,19 @@ import { useWeb3 } from "./components/providers/web3";
 
 function App() {
   const [count, setCount] = useState(0);
-  const { provider } = useWeb3();
+  const { provider, contract } = useWeb3();
 
-  const getacc = async () => {
-    await provider!.send("eth_requestAccounts", []);
-    const acc = await provider!.listAccounts();
-    console.log(acc);
+  const getNftinfo = async () => {
+    try {
+      console.log(await contract!.name());
+      console.log(await contract!.symbol());
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  if (provider) {
-    getacc();
+  if (contract) {
+    getNftinfo();
   }
 
   return (
