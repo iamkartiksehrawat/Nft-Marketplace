@@ -6,6 +6,7 @@ async function main() {
   const { NftMarket } = await hre.ignition.deploy(MarketModule);
   console.log("Deployed !!");
   const adrs = await NftMarket.getAddress();
+  console.log(adrs);
   savecontractfiles(NftMarket, adrs);
 }
 
