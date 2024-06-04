@@ -7,11 +7,12 @@ describe("NftMarket", function () {
   let otheraccount;
   let _nftPrice = ethers.parseEther("0.3").toString();
   let _listingPrice = ethers.parseEther("0.025").toString();
+  let _newlistingPrice = ethers.parseEther("0.050").toString();
 
   const deployedContractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
   before(async function () {
-    [owner, otheraccount] = await ethers.getSigners();
+    [owner, otheraccount, othr] = await ethers.getSigners();
     const NftMarket = await ethers.getContractFactory("NftMarket");
     nftMarket = await NftMarket.attach(deployedContractAddress);
   });
@@ -147,6 +148,30 @@ describe("NftMarket", function () {
         .connect(otheraccount)
         .getOwnedNfts({ from: otheraccount.address });
       expect(ownedNfts.length).to.equal(2);
+    });
+  });
+
+  describe("List an Nft", () => {
+    before(async () => {
+      await nftMarket.connect(otheraccount).placeNftOnSale(1, _nftPrice, {
+        from: otheraccount.address,
+        value: _listingPrice,
+      });
+    });
+
+    it("should have two listed items", async () => {
+      const listedNfts = await nftMarket.getAllNftsOnSale();
+
+      expect(listedNfts.length).to.equal(2);
+    });
+
+    it("should set new listing price", async () => {
+      await nftMarket.setListingPrice(_newlistingPrice, {
+        from: owner.address,
+      });
+      const listingPrice = await nftMarket.listingPrice();
+
+      expect(listingPrice.toString()).to.equal(_newlistingPrice);
     });
   });
 });
