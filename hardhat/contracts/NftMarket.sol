@@ -5,10 +5,14 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract NftMarket is ERC721URIStorage {
 
-  uint256 private _listedItems;
-  uint256 private _tokenIds;
   uint public listingPrice = 0.025 ether;
 
+  //private variables
+  uint256 private _listedItems;
+  uint256 private _tokenIds;
+  uint256[] private _allNfts;
+
+  //structs
   struct NftItem{
   uint tokenId;
   uint price;
@@ -16,9 +20,12 @@ contract NftMarket is ERC721URIStorage {
   bool isListed;
   }
 
+  //mappings
   mapping(string => bool) private _usedTokenURIs;
   mapping(uint => NftItem) private _idtoNftItem;
+  mapping(uint => uint) private _idtoNftIndex;
 
+  //events
   event NftItemCreated(
     uint tokenId,
     uint price,
@@ -26,8 +33,11 @@ contract NftMarket is ERC721URIStorage {
     bool islisted
   );
 
+
+  //Constructor
   constructor() ERC721("CreaturesNFT", "CNFT") {}
 
+  //Public Functions
   function getNftItem(uint tokenId) public view returns(NftItem memory){
     return _idtoNftItem[tokenId];
   }
@@ -38,6 +48,15 @@ contract NftMarket is ERC721URIStorage {
 
   function tokenURIExits(string memory tokenURI) public view returns(bool){
     return _usedTokenURIs[tokenURI];
+  }
+
+  function totalSupply() public view returns(uint){
+    return _allNfts.length;
+  }
+
+  function tokenByIndex(uint index) public view returns(uint){
+    require(index<totalSupply(),"Index out of bounds");
+    return _allNfts[index];
   }
 
   function mintToken(string memory tokenURI,uint price) public payable returns(uint){
@@ -57,10 +76,44 @@ contract NftMarket is ERC721URIStorage {
     return newTokenId;
   }
 
+  function buyNft(uint tokenId) public payable {
+    uint price= _idtoNftItem[tokenId].price;
+    address owner = ERC721.ownerOf(tokenId);
+
+    require(msg.sender!=owner,"You already own this NFT");
+    require(msg.value == price,"Please submit the asking price");
+
+    _idtoNftItem[tokenId].isListed=false;
+    _listedItems--;
+
+    _transfer(owner,msg.sender,tokenId);
+    
+    payable(owner).transfer(msg.value);
+  }
+
+  //override
+  function _update(address to, uint256 tokenId, address auth) internal virtual override returns (address) {
+    // parent function
+    address from = super._update(to, tokenId, auth);
+
+    // minting
+    if (from == address(0)) {
+      _addTokenToAllTokensEnumaration(tokenId);
+    }
+
+    return from;
+}
+
+  //private Functions
   function _createNftItem(uint tokenId, uint price) private {
     require(price>0,"Price must be atleast 1 Wei");
     _idtoNftItem[tokenId]=NftItem(tokenId,price,msg.sender,true);
     emit NftItemCreated(tokenId,price,msg.sender,true);
+  }
+
+  function _addTokenToAllTokensEnumaration(uint tokenId) private{
+    _idtoNftIndex[tokenId]=_allNfts.length;
+    _allNfts.push(tokenId);
   }
 
   
