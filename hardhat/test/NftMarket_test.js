@@ -112,5 +112,11 @@ describe("NftMarket", function () {
       expect(nftId1.toString()).to.equal("1");
       expect(nftId2.toString()).to.equal("2");
     });
+
+    it("should have only 1 nft on sale", async () => {
+      const nftonsale = await nftMarket.getAllNftsOnSale();
+      expect(nftonsale.length).to.equal(1);
+      expect(nftonsale[0].tokenId).to.equal(2);
+    });
   });
 });
