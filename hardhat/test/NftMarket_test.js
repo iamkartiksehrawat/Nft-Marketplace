@@ -118,5 +118,35 @@ describe("NftMarket", function () {
       expect(nftonsale.length).to.equal(1);
       expect(nftonsale[0].tokenId).to.equal(2);
     });
+
+    it("owner should have one owned NFT", async () => {
+      const ownedNfts = await nftMarket.getOwnedNfts({ from: owner.address });
+      expect(ownedNfts[0].tokenId.toString()).to.equal("2");
+    });
+
+    it("other account should have one owned NFT", async () => {
+      const ownedNfts = await nftMarket.connect(otheraccount).getOwnedNfts({
+        from: otheraccount.address,
+      });
+      expect(ownedNfts[0].tokenId.toString()).to.equal("1");
+    });
+  });
+
+  describe("Token transfer to new owner", () => {
+    before(async () => {
+      await nftMarket.transferFrom(owner.address, otheraccount.address, 2);
+    });
+
+    it("accounts[0] should own 0 tokens", async () => {
+      const ownedNfts = await nftMarket.getOwnedNfts({ from: owner.accounts });
+      expect(ownedNfts.length).to.equal(0);
+    });
+
+    it("accounts[1] should own 2 tokens", async () => {
+      const ownedNfts = await nftMarket
+        .connect(otheraccount)
+        .getOwnedNfts({ from: otheraccount.address });
+      expect(ownedNfts.length).to.equal(2);
+    });
   });
 });

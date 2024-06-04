@@ -24,6 +24,8 @@ contract NftMarket is ERC721URIStorage {
   mapping(string => bool) private _usedTokenURIs;
   mapping(uint => NftItem) private _idtoNftItem;
   mapping(uint => uint) private _idtoNftIndex;
+  mapping(address => mapping(uint => uint)) private _ownedTokens;
+  mapping(uint => uint) private _idToOwnedIndex;
 
   //events
   event NftItemCreated(
@@ -59,6 +61,11 @@ contract NftMarket is ERC721URIStorage {
     return _allNfts[index];
   }
 
+  function tokenOfOwnerByIndex(address owner, uint index) public view returns (uint) {
+    require(index < ERC721.balanceOf(owner), "Index out of bounds");
+    return _ownedTokens[owner][index];
+  }
+
   function getAllNftsOnSale() public view returns (NftItem[] memory) {
     uint allItemsCounts = totalSupply();
     uint currentIndex =0;
@@ -77,7 +84,20 @@ contract NftMarket is ERC721URIStorage {
     }
 
     return items;
-}
+  }
+
+  function getOwnedNfts() public view returns (NftItem[] memory) {
+    uint ownedItemsCount = ERC721.balanceOf(msg.sender);
+    NftItem[] memory items = new NftItem[](ownedItemsCount);
+
+    for (uint i = 0; i < ownedItemsCount; i++) {
+      uint tokenId = tokenOfOwnerByIndex(msg.sender, i);
+      NftItem storage item = _idtoNftItem[tokenId];
+      items[i] = item;
+    }
+
+    return items;
+  }
 
   function mintToken(string memory tokenURI,uint price) public payable returns(uint){
     require(!tokenURIExits(tokenURI),"Token URI already exists");
@@ -119,6 +139,12 @@ contract NftMarket is ERC721URIStorage {
     // minting
     if (from == address(0)) {
       _addTokenToAllTokensEnumaration(tokenId);
+    }else if(to!=from){
+      _removeTokenFromOwnerEnumaration(from, tokenId);
+    }
+
+    if (to != from) {
+      _addTokenToOwnerEnumaration(to, tokenId);
     }
 
     return from;
@@ -134,6 +160,27 @@ contract NftMarket is ERC721URIStorage {
   function _addTokenToAllTokensEnumaration(uint tokenId) private{
     _idtoNftIndex[tokenId]=_allNfts.length;
     _allNfts.push(tokenId);
+  }
+
+  function _addTokenToOwnerEnumaration(address to, uint tokenId) private {
+    uint length = ERC721.balanceOf(to)-1;
+    _ownedTokens[to][length] = tokenId;
+    _idToOwnedIndex[tokenId] = length;
+  }
+
+  function _removeTokenFromOwnerEnumaration(address from, uint tokenId) private {
+    uint lastTokenIndex = ERC721.balanceOf(from);
+    uint tokenIndex = _idToOwnedIndex[tokenId];
+
+    if (tokenIndex != lastTokenIndex) {
+      uint lastTokenId = _ownedTokens[from][lastTokenIndex];
+
+      _ownedTokens[from][tokenIndex] = lastTokenId;
+      _idToOwnedIndex[lastTokenId] = tokenIndex;
+    }
+
+    delete _idToOwnedIndex[tokenId];
+    delete _ownedTokens[from][lastTokenIndex];
   }
 
   
