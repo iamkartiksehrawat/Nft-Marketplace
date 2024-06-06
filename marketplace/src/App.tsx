@@ -1,25 +1,21 @@
-import { useState } from "react";
-import "./App.css";
-import { useWeb3 } from "./components/providers/web3";
+import Navbar from "./components/ui/navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const { provider, contract } = useWeb3();
-
-  const getNftinfo = async () => {
-    try {
-      console.log(await contract!.name());
-      console.log(await contract!.symbol());
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  if (contract) {
-    getNftinfo();
-  }
-
-  return <></>;
+  return (
+    <div className=" font-inter">
+      <BrowserRouter>
+        <Navbar />
+        {/* padding given for navbar */}
+        <div className=" pt-20">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
