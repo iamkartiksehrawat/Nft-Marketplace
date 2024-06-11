@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useAccount, useNetwork } from "../hooks/web3";
+import Walletbar from "./walletbar";
+
 import {
   IconMenu2,
   IconCirclePlus,
   IconBomb,
   IconBrandSafari,
 } from "@tabler/icons-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { account } = useAccount();
+  const { network } = useNetwork();
+
+  console.log(account);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,9 +70,16 @@ const Navbar = () => {
             Drops
           </Link>
         </div>
-        <Button className="max-[640px]:h-8 max-[640px]:text-4 max-[640px]:px-2">
-          Connect
-        </Button>
+        {/* Wallet Bar */}
+        <Walletbar
+          isInstalled={account.isInstalled}
+          isLoading={account.isLoading && network.isLoading}
+          connect={account.connect}
+          account={account.data}
+          network={network.data}
+          supported={network.isSupported}
+          targetnetwork={network.targetNetwork}
+        />
         <div className="sm:hidden px-2">
           <Sheet key="left">
             <SheetTrigger>
