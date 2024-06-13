@@ -4,7 +4,7 @@ import { SWRResponse } from "swr";
 
 export type Web3Dependencies = {
   provider: BrowserProvider;
-  contract: null; //null kiya h bhai not null karke contract kar diyo
+  contract: Contract;
   ethereum: MetaMaskInpageProvider;
   isLoading: boolean;
 };

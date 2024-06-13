@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useAccount, useNetwork } from "../hooks/web3";
 import Walletbar from "./walletbar";
-
 import {
   IconMenu2,
   IconCirclePlus,
@@ -14,10 +13,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
   const { account } = useAccount();
   const { network } = useNetwork();
-
-  console.log(account);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,8 +44,9 @@ const Navbar = () => {
     >
       <img
         src="/logos/logo_with_name.png"
-        className="w-auto h-8 md:h-14"
+        className="w-auto h-8 md:h-14 cursor-pointer"
         alt="Logo"
+        onClick={() => navigate("/")}
       ></img>
       <div className="flex items-center gap-12 text-xs md:text-base max-[640px]:gap-4">
         <div className="flex gap-12">
@@ -58,7 +57,7 @@ const Navbar = () => {
             Create
           </Link>
           <Link
-            to="#"
+            to="/explore"
             className="text-[#808080] hover:text-accent-foreground focus:text-accent-foreground transition-colors font-semibold hidden min-[640px]:inline-flex"
           >
             Explore
@@ -67,7 +66,7 @@ const Navbar = () => {
             to="#"
             className="text-[#808080] hover:text-accent-foreground focus:text-accent-foreground transition-colors font-semibold hidden min-[640px]:inline-flex"
           >
-            Drops
+            Learn
           </Link>
         </div>
         {/* Wallet Bar */}
@@ -101,7 +100,7 @@ const Navbar = () => {
               <div className="flex items-center justify-center border-[1px] rounded-lg hover:bg-[#161616] mb-4">
                 <IconBomb className="w-4 h-4 mr-2" />
                 <Link to="#" className="font-semibold text-lg py-2">
-                  Drops
+                  Learn
                 </Link>
               </div>
             </SheetContent>

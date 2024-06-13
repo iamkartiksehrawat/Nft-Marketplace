@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import Nftcard from "@/components/ui/Nftcard";
 import Infocard from "@/components/ui/Infocard";
 import Smcarosel from "@/components/ui/Smcarosel";
+import { useNavigate } from "react-router-dom";
 
 const Subscribepage = () => {
   return (
@@ -111,6 +112,7 @@ const CardGrid = () => {
 };
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex p-16 justify-center w-full gap-10 flex-wrap-reverse md:flex-nowrap">
       <div className="flex flex-col gap-4 justify-center min-[320px]:text-center md:text-left min-[320px]:items-center md:items-start">
@@ -122,7 +124,7 @@ const HeroSection = () => {
           Platform
         </div>
         <div className="flex gap-4 pt-2 justify-center">
-          <Button>
+          <Button onClick={() => navigate("/explore")}>
             <IconBolt className="mr-2 h-4 w-4" />
             Explore Now
           </Button>
@@ -239,91 +241,13 @@ const Home = () => {
     },
   ];
 
-  const arr2 = [
-    {
-      creator: "hansi flick",
-      title: "Sakura Special Edition",
-      src: "/images/Azuki/NFT-02.jpg",
-      price: "0.59",
-    },
-    {
-      creator: "hansi flick",
-      title: "Bored Ape",
-      src: "/images/Azuki/NFT-03.jpg",
-      price: "0.12",
-    },
-    {
-      creator: "Beanz",
-      title: "Red Bubble",
-      src: "/images/Azuki/NFT-04.jpg",
-      price: "0.02",
-    },
-    {
-      creator: "ramesh",
-      title: "Vee Con Ticket",
-      src: "/images/Azuki/NFT-05.jpg",
-      price: "0.38",
-    },
-    {
-      creator: "Overworld",
-      title: "Electro",
-      src: "/images/Azuki/NFT-06.jpg",
-      price: "0.75",
-    },
-    {
-      creator: "Kartik",
-      title: "Hape Social",
-      src: "/images/Azuki/NFT-07.jpg",
-      price: "1.12",
-    },
-  ];
-
-  const arr3 = [
-    {
-      creator: "hansi flick",
-      title: "Sakura Special Edition",
-      src: "/images/Hape/NFT-01.jpg",
-      price: "0.59",
-    },
-    {
-      creator: "hansi flick",
-      title: "Bored Ape",
-      src: "/images/Hape/NFT-02.jpg",
-      price: "0.12",
-    },
-    {
-      creator: "Beanz",
-      title: "Red Bubble",
-      src: "/images/Hape/NFT-05.jpg",
-      price: "0.02",
-    },
-    {
-      creator: "ramesh",
-      title: "Vee Con Ticket",
-      src: "/images/Hape/NFT-07.jpg",
-      price: "0.38",
-    },
-    {
-      creator: "Overworld",
-      title: "Electro",
-      src: "/images/Hape/NFT-06.jpg",
-      price: "0.75",
-    },
-    {
-      creator: "Kartik",
-      title: "Hape Social",
-      src: "/images/Hape/NFT-08.jpg",
-      price: "1.12",
-    },
-  ];
-
   return (
     <div className="pt-[60px] font-inter">
       <HeroSection />
       <Carosel />
-      <CardGrid />
+      {/* <CardGrid />
       <Smcarosel arr={arr2} Card={Nftcard} title="Azuki"></Smcarosel>
-      <Smcarosel arr={arr3} Card={Nftcard} title="Hape Social"></Smcarosel>
+      <Smcarosel arr={arr3} Card={Nftcard} title="Hape Social"></Smcarosel> */}
       <Smcarosel arr={arr1} Card={Infocard} title="NFT 101"></Smcarosel>
       <Subscribepage />
     </div>

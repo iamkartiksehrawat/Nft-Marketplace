@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Walletbar = ({
   isInstalled,
@@ -22,6 +23,7 @@ const Walletbar = ({
   targetnetwork,
 }) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isInstalled && account && !supported) {
@@ -59,7 +61,7 @@ const Walletbar = ({
                     <CardHeader>
                       <CardTitle>Profile</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex flex-col gap-4">
                       <div className="flex gap-2 w-max font-bold">
                         <div>Network :</div>
                         <div className=" text-[#808080] font-semibold">
@@ -75,6 +77,15 @@ const Walletbar = ({
                           -4
                         )}`}</div>
                       </div>
+
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          navigate("/profile");
+                        }}
+                      >
+                        View Profile
+                      </Button>
                     </CardContent>
                   </Card>
                 </NavigationMenuContent>
@@ -98,7 +109,8 @@ const Walletbar = ({
             toast({
               variant: "destructive",
               title: "MetaMask not Installed",
-              description: "Install the metamask extension to connect.",
+              description:
+                "Install the metamask extension to connect & reload site",
             });
           }}
         >

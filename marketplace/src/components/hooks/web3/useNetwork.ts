@@ -18,7 +18,7 @@ const NETWORKS: { [k: number]: string } = {
   5: "Goerli Test Network",
   42: "Kovan Test Network",
   56: "Binance Smart Chain",
-  1337: "Ganache",
+  1337: "Hardhat",
   11155111: "Sepolia",
 };
 
@@ -49,7 +49,7 @@ export const hookFactory: NetworkHookFactory =
       data,
       isValidating,
       targetNetwork,
-      isSupported: data === targetNetwork,
+      isSupported: data ? data === targetNetwork : true,
       isLoading: isLoading as boolean,
     };
   };

@@ -50,6 +50,11 @@ contract NftMarket is ERC721URIStorage,Ownable {
     return _idtoNftItem[tokenId];
   }
 
+  function ownerOfTokenURI(uint tokenId) public view returns (address) {
+      require(tokenId != 0, "Token with this URI does not exist");
+      return ERC721.ownerOf(tokenId);
+  }
+
   function listedItemsCount() public view returns (uint){
     return _listedItems;
   }
@@ -103,6 +108,27 @@ contract NftMarket is ERC721URIStorage,Ownable {
       items[i] = item;
     }
 
+    return items;
+  }
+
+  function getNftsCreatedBy(address creator) public view returns (NftItem[] memory) {
+    uint totalNfts = totalSupply();
+    uint itemCount = 0;
+    uint currentIndex = 0;
+
+    for (uint i = 0; i < totalNfts; i++) {
+      if (_idtoNftItem[_allNfts[i]].creator == creator) {
+        itemCount += 1;
+      }
+    }
+
+    NftItem[] memory items = new NftItem[](itemCount);
+    for (uint i = 0; i < totalNfts; i++) {
+      if (_idtoNftItem[_allNfts[i]].creator == creator) {
+        items[currentIndex] = _idtoNftItem[_allNfts[i]];
+        currentIndex += 1;
+      }
+    }
     return items;
   }
 
