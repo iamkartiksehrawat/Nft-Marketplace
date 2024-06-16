@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -9,17 +10,22 @@ const Footer = () => {
           <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg ">
             MarketPlace
           </div>
-          <div className="text-[#585858] font-semibold">Explore</div>
+          <Link to={"/"} className="text-[#585858] font-semibold">
+            Home
+          </Link>
+          <Link to={"/explore"} className="text-[#585858] font-semibold">
+            Explore
+          </Link>
           <div className="text-[#585858] font-semibold">Buy</div>
-          <div className="text-[#585858] font-semibold">Sell</div>
         </div>
 
         <div className="flex flex-col gap-1 md:gap-3">
           <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg">
             Account
           </div>
-          <div className="text-[#585858] font-semibold">Profile</div>
-          <div className="text-[#585858] font-semibold">Dashboard</div>
+          <Link to={"/profile"} className="text-[#585858] font-semibold">
+            Profile
+          </Link>
         </div>
 
         <div className="flex flex-col gap-1 md:gap-3">

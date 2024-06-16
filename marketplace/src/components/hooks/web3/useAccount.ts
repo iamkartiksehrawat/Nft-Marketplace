@@ -1,5 +1,5 @@
 import { CryptoHookFactory } from "@/types/hooks";
-import { useEffect } from "react";
+
 import useSWR from "swr";
 
 type UseAccountResponse = {
@@ -34,22 +34,6 @@ export const hookFactory: AccountHookFactory =
         shouldRetryOnError: false,
       }
     );
-
-    useEffect(() => {
-      ethereum?.on("accountsChanged", handleAccountsChanged);
-      return () => {
-        ethereum?.removeListener("accountsChanged", handleAccountsChanged);
-      };
-    });
-
-    const handleAccountsChanged = (...args: unknown[]) => {
-      const accounts = args[0] as string[];
-      if (accounts.length === 0) {
-        console.error("Please, connect to Web3 wallet");
-      } else if (accounts[0] !== data) {
-        mutate(accounts[0]);
-      }
-    };
 
     const connect = async () => {
       try {

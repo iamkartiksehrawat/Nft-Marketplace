@@ -1,49 +1,166 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Nftcard from "@/components/ui/Nftcard";
+import { useOwnedNfts } from "@/components/hooks/web3";
+import { Nft } from "@/types/nft";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useAccount, useNetwork } from "@/components/hooks/web3";
+import { useEffect, useState } from "react";
+
+const Salenft = () => {
+  const { nfts } = useOwnedNfts();
+
+  const arr = nfts.data as Nft[];
+
+  return arr.length == 0 ? (
+    <div className="w-full flex py-4 items-center justify-center">
+      <Card className="mx-4">
+        <CardContent className="p-8">
+          <div className="font-bold text-4xl text-center">
+            {" "}
+            No NFTs Listed for Sale
+          </div>
+          <div className="font-semibold text-center text-sm text-[#a0a0a0] pt-3">
+            {" "}
+            You haven't listed any NFTs for sale yet. List your NFTs to make
+            them available for purchase in the marketplace.
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ) : (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 ">
+      {arr
+        .filter((val) => val.isListed)
+        .map((val, index) => (
+          <Nftcard val={val} indx={index} key={index} isauth={true} />
+        ))}
+    </div>
+  );
+};
+
+const Notlistednft = () => {
+  const { nfts } = useOwnedNfts();
+
+  const arr = nfts.data as Nft[];
+
+  return arr.length == 0 ? (
+    <div className="w-full flex py-4 items-center justify-center">
+      <Card className="mx-4">
+        <CardContent className="p-8">
+          <div className="font-bold text-4xl text-center">
+            {" "}
+            No NFTs Available
+          </div>
+          <div className="font-semibold text-center text-sm text-[#a0a0a0] pt-3">
+            {" "}
+            You currently don't have any NFTs that are not listed for sale.
+            Create more NFTs to see them here.
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ) : (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 ">
+      {arr
+        .filter((val) => !val.isListed)
+        .map((val, index) => (
+          <Nftcard val={val} indx={index} key={index} isauth={true} />
+        ))}
+    </div>
+  );
+};
+
+const Creatednft = () => {
+  const navigate = useNavigate();
+  const { nfts } = useOwnedNfts();
+  const { account } = useAccount();
+  const [arr, setarr] = useState<Nft[]>([]);
+
+  useEffect(() => {
+    const creatednftdata = async () => {
+      try {
+        const arr = await nfts.getCreatedNft(account.data);
+        setarr(arr);
+      } catch (e: any) {
+        console.log(e);
+      }
+    };
+    creatednftdata();
+  }, []);
+
+  return arr.length == 0 ? (
+    <div className="w-full flex py-4 items-center justify-center">
+      <Card className="mx-4">
+        <CardContent className="p-8">
+          <div className="font-bold text-4xl text-center">
+            {" "}
+            No NFTs Created yet
+          </div>
+          <div className="font-semibold text-center text-sm text-[#a0a0a0] pt-3">
+            {" "}
+            It looks like you haven't created any NFTs. Start creating your own
+            digital assets and showcase them here!
+          </div>
+          <div className="flex justify-center items-center pt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                navigate("/create");
+              }}
+            >
+              Create Nft
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ) : (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 ">
+      {arr?.map((val, index) => (
+        <Nftcard val={val} indx={index} key={index} isauth={true} />
+      ))}
+    </div>
+  );
+};
 
 const Ownednft = () => {
-  const arr = [
-    {
-      creator: "hansi flick",
-      title: "Sakura Special Edition",
-      src: "/images/Hape/NFT-01.jpg",
-      price: "0.59",
-    },
-    {
-      creator: "hansi flick",
-      title: "Bored Ape",
-      src: "/images/Hape/NFT-02.jpg",
-      price: "0.12",
-    },
-    {
-      creator: "Beanz",
-      title: "Red Bubble",
-      src: "/images/Hape/NFT-05.jpg",
-      price: "0.02",
-    },
-    {
-      creator: "ramesh",
-      title: "Vee Con Ticket",
-      src: "/images/Hape/NFT-07.jpg",
-      price: "0.38",
-    },
-    {
-      creator: "Overworld",
-      title: "Electro",
-      src: "/images/Hape/NFT-06.jpg",
-      price: "0.75",
-    },
-    {
-      creator: "Kartik",
-      title: "Hape Social",
-      src: "/images/Hape/NFT-08.jpg",
-      price: "1.12",
-    },
-  ];
-  return (
+  const { nfts } = useOwnedNfts();
+  const navigate = useNavigate();
+  const arr = nfts.data as Nft[];
+
+  return arr.length == 0 ? (
+    <div className="w-full flex py-4 items-center justify-center">
+      <Card className="mx-4">
+        <CardContent className="p-8">
+          <div className="font-bold text-4xl text-center">
+            {" "}
+            No NFTs Purchased yet
+          </div>
+          <div className="font-semibold text-center text-sm text-[#a0a0a0] pt-3">
+            {" "}
+            It looks like you haven't bought any NFTs yet. Explore the
+            marketplace to find unique digital assets and start building your
+            collection!
+          </div>
+          <div className="flex justify-center items-center pt-6">
+            <Button
+              variant="outline"
+              onClick={() => {
+                navigate("/explore");
+              }}
+            >
+              Explore Nfts
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  ) : (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 ">
       {arr.map((val, index) => (
-        <Nftcard val={val} indx={index} />
+        <Nftcard val={val} indx={index} key={index} isauth={true} />
       ))}
     </div>
   );
@@ -56,19 +173,33 @@ const Menubar = () => {
         <TabsList>
           <TabsTrigger value="owned">Owned</TabsTrigger>
           <TabsTrigger value="created">Created</TabsTrigger>
-          <TabsTrigger value="sale">On Sale</TabsTrigger>
+          <TabsTrigger value="sale">Listed/On sale</TabsTrigger>
+          <TabsTrigger value="notlisted">Not Listed</TabsTrigger>
         </TabsList>
         <TabsContent value="owned">
           <Ownednft />
         </TabsContent>
-        <TabsContent value="created">{/* <Creatednft /> */}</TabsContent>
-        <TabsContent value="sale">{/* <Salenft /> */}</TabsContent>
+        <TabsContent value="created">
+          <Creatednft />
+        </TabsContent>
+        <TabsContent value="sale">
+          <Salenft />
+        </TabsContent>
+        <TabsContent value="notlisted">
+          <Notlistednft />
+        </TabsContent>
       </Tabs>
     </div>
   );
 };
 
 const Details = () => {
+  const { account } = useAccount();
+  const { network } = useNetwork();
+
+  const acc = account.data?.toString();
+  const netw = network.data;
+
   return (
     <div className="pt-8 p-4">
       {/* title */}
@@ -80,17 +211,15 @@ const Details = () => {
       </div>
       <div className="flex flex-col gap-2 p-4 border-2 rounded-lg">
         <div className="font-bold">
-          Blockchain :
+          Network :{" "}
           <span className="text-[#808080] text-base max-sm:text-xs">
-            {" "}
-            Ethereum
+            {netw ? netw : "Unknown network"}
           </span>
         </div>
         <div className="font-bold">
           Address :
           <span className="text-[#808080] text-base max-sm:text-xs">
-            {" "}
-            0x9d2fa0c2953a1d71d92134a8142f793423a8357b
+            {acc ? ` 0x${acc[2]}${acc[3]}${acc[4]}....${acc.slice(-4)}` : ""}
           </span>
         </div>
       </div>

@@ -8,7 +8,7 @@ async function main() {
   nftMarket = await NftMarket.attach(deployedContractAddress);
 
   await nftMarket.mintToken(
-    "https://apricot-worrying-krill-556.mypinata.cloud/ipfs/Qmf1896XEJFFhTDijLZLvL67NtmkV6ZTxNt2uDyRwHxahj?pinataGatewayToken=06G0QaMSUrmzgObBpIwYK2RaBjWsvHAMDK9ZnSpPd9NIUmY6HZtCCYbxgX8WWgeC",
+    "https://apricot-worrying-krill-556.mypinata.cloud/ipfs/QmRFSGg7jNme7A1eD5zyVpWDpL34roatC4BncCYpiegCKX?pinataGatewayToken=06G0QaMSUrmzgObBpIwYK2RaBjWsvHAMDK9ZnSpPd9NIUmY6HZtCCYbxgX8WWgeC",
     "2000000000000000000",
     {
       value: "25000000000000000",
@@ -16,6 +16,7 @@ async function main() {
     }
   );
 
+  console.log("Minted Successfully !!!!");
   console.log(await nftMarket.getAllNftsOnSale());
   console.log(await nftMarket.tokenURI(1));
 }
