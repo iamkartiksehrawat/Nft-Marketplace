@@ -12,7 +12,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useWeb3 } from "../providers/web3";
 
 const Showmodal = ({ openmodal, setmodalopen }) => {
   return (
@@ -39,9 +40,10 @@ const Showmodal = ({ openmodal, setmodalopen }) => {
   );
 };
 
-const Nftcard = ({ val, indx, isauth }) => {
+const Nftcard = ({ val, indx }) => {
   const navigate = useNavigate();
   const [openmodal, setmodalopen] = useState(false);
+  const { usr } = useWeb3();
 
   const handlemodal = () => {
     setmodalopen(true);
@@ -53,7 +55,7 @@ const Nftcard = ({ val, indx, isauth }) => {
       <Card
         className="group max-w-62 h-full cursor-pointer hover:bg-[#161616]"
         onClick={() => {
-          isauth ? navigate(`/asset/${val.tokenId}`) : handlemodal();
+          usr ? navigate(`/asset/${val.tokenId}`) : handlemodal();
         }}
       >
         <CardContent className="p-2 h-full text-sm sm:text-sm md:text-lg ">

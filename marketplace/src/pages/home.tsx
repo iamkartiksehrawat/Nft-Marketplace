@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import {
   IconBolt,
   IconShare2,
@@ -8,6 +9,7 @@ import {
 
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
+import axios from "axios";
 
 import {
   Carousel,
@@ -23,8 +25,68 @@ import Nftcard from "@/components/ui/Nftcard";
 import Infocard from "@/components/ui/Infocard";
 import Smcarosel from "@/components/ui/Smcarosel";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { z } from "zod";
 
 const Subscribepage = () => {
+  const { toast } = useToast();
+  const emailSchema = z.string().email();
+  const [email, setEmail] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    try {
+      emailSchema.parse(e.target.value);
+      setIsValidEmail(true);
+    } catch (error) {
+      setIsValidEmail(false);
+    } finally {
+      if (e.target.value == "") {
+        setIsValidEmail(true);
+      }
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      emailSchema.parse(email);
+    } catch (error) {
+      setEmail("");
+      toast({
+        variant: "destructive",
+        title: "Wrong Email address",
+        description: "Please Enter a valid email address.",
+      });
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/subscribe", {
+        email,
+      });
+
+      if (response.status == 200) {
+        toast({
+          variant: "success",
+          title: response.data.message,
+          description: "Thank you for subscribing to the newsletter.",
+        });
+        setEmail("");
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error Occurred",
+        description: "Some error occurred due to please try again later.",
+      });
+      console.log(error);
+    } finally {
+      setEmail("");
+    }
+  };
+
   return (
     <div className="flex pt-12 p-8 justify-between items-center w-full max-[640px]:p-4 max-[640px]:pt-12 pb-0 max-sm:justify-center">
       <div className="flex relative justify-center items-center max-w-[45%] max-sm:hidden">
@@ -41,8 +103,19 @@ const Subscribepage = () => {
           to your inbox. Stay ahead of the curve with Apolio!
         </div>
         <div className="flex max-w-[75%] items-center gap-2 ">
-          <Input type="email" placeholder="Email" />
-          <Button type="submit" size="sm">
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmailChange}
+            className={` ${isValidEmail ? "" : "border-red-500"} `}
+          />
+          <Button
+            type="submit"
+            size="sm"
+            onClick={handleSubmit}
+            className=" cursor-pointer"
+          >
             Subscribe
           </Button>
         </div>

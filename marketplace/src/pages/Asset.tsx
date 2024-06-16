@@ -17,8 +17,10 @@ import {
 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { useWeb3 } from "@/components/providers/web3";
 
 const Asset = () => {
+  const { usr } = useWeb3();
   let { tokenid } = useParams();
   const { nfts } = useListedNfts();
   const { nfts: ownednfts } = useOwnedNfts();
@@ -157,14 +159,15 @@ const Asset = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-2 p-4 font-semibold text-[#a0a0a0]">
-                  <div>
-                    <span className="text-white">Type :</span>{" "}
-                    {data.meta.skills.type}
-                  </div>
-                  <div>
-                    <span className="text-white">Background :</span>{" "}
-                    {data.meta.skills.background}
-                  </div>
+                  {data.meta.traits.map((trait, indx) => (
+                    <div key={indx}>
+                      {Object.entries(trait).map(([key, value]) => (
+                        <div key={key}>
+                          <span className="text-white">{key}:</span> {value}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
               <Card className=" overflow-hidden bg-[#1a1a1a] mt-4">

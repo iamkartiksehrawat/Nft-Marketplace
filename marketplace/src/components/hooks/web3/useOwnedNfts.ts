@@ -68,6 +68,7 @@ export const hookFactory: OwnedNftsHookFactory =
         }
       }
 
+      console.log(nfts);
       return nfts;
     };
 

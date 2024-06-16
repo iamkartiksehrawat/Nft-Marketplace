@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className="flex items-center gap-12 text-xs md:text-base max-[640px]:gap-4">
         <div className="flex gap-12">
           <Link
-            to="#"
+            to="/create"
             className="text-[#808080] hover:text-accent-foreground focus:text-accent-foreground transition-colors font-semibold hidden min-[640px]:inline-flex"
           >
             Create
@@ -71,11 +71,9 @@ const Navbar = () => {
         </div>
         {/* Wallet Bar */}
         <Walletbar
-          isInstalled={account.isInstalled}
-          isLoading={account.isLoading && network.isLoading}
-          connect={account.connect}
           account={account.data}
           network={network.data}
+          isnetworkloading={network.isLoading}
           supported={network.isSupported}
           targetnetwork={network.targetNetwork}
         />

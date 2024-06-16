@@ -13,7 +13,7 @@ type Nullable<T> = {
   [P in keyof T]: T[P] | null;
 };
 
-export type Web3Sate = {
+export type Web3State = {
   isLoading: boolean;
   hooks: Web3Hooks;
 } & Nullable<Web3Dependencies>;
