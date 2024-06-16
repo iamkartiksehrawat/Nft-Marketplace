@@ -7,10 +7,16 @@ const UserSchema = new schema({
     required: true,
     unique: true,
   },
-  profilePhoto: {
+  avatar: {
     type: String,
   },
   banner: {
+    type: String,
+  },
+  banner_id: {
+    type: String,
+  },
+  avatar_id: {
     type: String,
   },
   username: {
