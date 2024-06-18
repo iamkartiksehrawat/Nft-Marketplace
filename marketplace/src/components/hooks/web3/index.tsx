@@ -35,3 +35,30 @@ export const useOwnedNfts = () => {
     nfts: swrRes,
   };
 };
+
+export const useAvatar = () => {
+  const hooks = useHooks();
+  const swrRes = hooks.useAvatar();
+
+  return {
+    avatar: swrRes,
+  };
+};
+
+export const useUsername = () => {
+  const hooks = useHooks();
+  const swrRes = hooks.useUsername();
+
+  return {
+    username: swrRes,
+  };
+};
+
+export const useBanner = () => {
+  const hooks = useHooks();
+  const swrRes = hooks.useBanner();
+
+  return {
+    banner: swrRes,
+  };
+};

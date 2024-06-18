@@ -1,10 +1,12 @@
+export type Trait = {
+  [key: string]: string;
+};
+
 export type NftMeta = {
   title: string;
   src: string;
-  skills: {
-    type: string;
-    background: string;
-  };
+  description: string;
+  traits: Trait[];
 };
 
 export type NftCore = {

@@ -1,8 +1,11 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useAccount } from "../hooks/web3";
+import { useWeb3 } from "../providers/web3";
 
 const Footer = () => {
+  const { usr } = useWeb3();
   return (
     <div className="bg-[#0f0f0f] w-full font-inter">
       <div className="flex py-12 mx-6 gap-2 justify-around items-start">
@@ -16,17 +19,23 @@ const Footer = () => {
           <Link to={"/explore"} className="text-[#585858] font-semibold">
             Explore
           </Link>
-          <div className="text-[#585858] font-semibold">Buy</div>
-        </div>
-
-        <div className="flex flex-col gap-1 md:gap-3">
-          <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg">
-            Account
-          </div>
-          <Link to={"/profile"} className="text-[#585858] font-semibold">
-            Profile
+          <Link to={"/create"} className="text-[#585858] font-semibold">
+            Create
           </Link>
         </div>
+
+        {usr ? (
+          <div className="flex flex-col gap-1 md:gap-3">
+            <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg">
+              Account
+            </div>
+            <Link to={"/profile"} className="text-[#585858] font-semibold">
+              Profile
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
 
         <div className="flex flex-col gap-1 md:gap-3">
           <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg">

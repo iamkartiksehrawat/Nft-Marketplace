@@ -12,21 +12,25 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useWeb3 } from "../providers/web3";
+import { Skeleton } from "./skeleton";
+import { useAvatar, useUsername } from "../hooks/web3";
 
 const Walletbar = ({
-  isInstalled,
-  isLoading,
-  connect,
   account,
   network,
+  isnetworkloading,
   supported,
   targetnetwork,
 }) => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { connectweb3, isLoading, usr } = useWeb3();
+  const { avatar } = useAvatar();
+  const { username } = useUsername();
 
   useEffect(() => {
-    if (isInstalled && account && !supported) {
+    if (usr && !supported) {
       toast({
         variant: "warning",
         title: "Network not Supported",
@@ -45,15 +49,22 @@ const Walletbar = ({
           <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
           Please Wait
         </Button>
-      ) : account ? (
+      ) : usr ? (
         <>
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent hover:bg-transparent active:bg-transparent  data-[active]:bg-transparent data-[state=open]:bg-transparent focus:bg-transparent">
                   <Avatar className=" cursor-pointer">
-                    <AvatarImage src="/public/images/logo.webp" />
-                    <AvatarFallback className="font-bold">U</AvatarFallback>
+                    {avatar.isLoading ? (
+                      <AvatarFallback className="font-bold">
+                        <IconLoader2 className="h-4 w-4 animate-spin" />
+                      </AvatarFallback>
+                    ) : avatar.data ? (
+                      <AvatarImage src={avatar.data} />
+                    ) : (
+                      <AvatarFallback className="font-bold">U</AvatarFallback>
+                    )}
                   </Avatar>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="left-auto right-0">
@@ -63,19 +74,46 @@ const Walletbar = ({
                     </CardHeader>
                     <CardContent className="flex flex-col gap-4">
                       <div className="flex gap-2 w-max font-bold">
-                        <div>Network :</div>
+                        <div>Username :</div>
                         <div className=" text-[#808080] font-semibold">
-                          {network ? network : "Unknown network"}
+                          {username.isLoading ? (
+                            <>
+                              {" "}
+                              <Skeleton className="h-[20px] w-[120px] " />
+                            </>
+                          ) : (
+                            username.data
+                          )}
                         </div>
                       </div>
-
+                      <div className="flex gap-2 w-max font-bold">
+                        <div>Network :</div>
+                        <div className=" text-[#808080] font-semibold">
+                          {isnetworkloading ? (
+                            <>
+                              {" "}
+                              <Skeleton className="h-[20px] w-[120px] " />
+                            </>
+                          ) : network ? (
+                            network
+                          ) : (
+                            "Unknown network"
+                          )}
+                        </div>
+                      </div>
                       <div className="flex gap-2 w-max font-bold">
                         <div className="font-bold">Wallet Address :</div>
-                        <div className=" text-[#808080] font-semibold">{`0x${
-                          account[2]
-                        }${account[3]}${account[4]}....${account.slice(
-                          -4
-                        )}`}</div>
+                        <div className=" text-[#808080] font-semibold">
+                          {account ? (
+                            `0x${account[2]}${account[3]}${
+                              account[4]
+                            }....${account.slice(-4)}`
+                          ) : (
+                            <div>
+                              <Skeleton className="h-[20px] w-[120px] " />
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       <Button
@@ -93,25 +131,11 @@ const Walletbar = ({
             </NavigationMenuList>
           </NavigationMenu>
         </>
-      ) : isInstalled ? (
+      ) : (
         <Button
           className="max-[640px]:h-8 max-[640px]:text-4 max-[640px]:px-2"
           onClick={() => {
-            connect();
-          }}
-        >
-          Connect
-        </Button>
-      ) : (
-        <Button
-          className="max-[640px]:h-8 max-[640px]:text-4 max-[640px]:px-2 "
-          onClick={() => {
-            toast({
-              variant: "destructive",
-              title: "MetaMask not Installed",
-              description:
-                "Install the metamask extension to connect & reload site",
-            });
+            connectweb3();
           }}
         >
           Connect

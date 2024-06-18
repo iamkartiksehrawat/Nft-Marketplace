@@ -5,6 +5,8 @@ import Home from "./pages/home";
 import Profile from "./pages/Profile";
 import Explore from "./pages/Explore";
 import Asset from "./pages/Asset";
+import ProtectedRoute from "./components/auth/Protectedroute";
+import CreateNft from "./pages/CreateNft";
 
 function App() {
   return (
@@ -12,10 +14,13 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/asset/:tokenid" element={<Asset />} />
+          <Route path="/create" element={<CreateNft />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/asset/:tokenid" element={<Asset />} />
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
