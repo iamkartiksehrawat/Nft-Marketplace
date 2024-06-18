@@ -68,8 +68,8 @@ const Nftcard = ({ val, indx }) => {
                   className="object-cover rounded-sm transform transition-transform duration-300 ease-in-out group-hover:scale-110"
                 ></img>
               </div>
-              <div className="font-bold pt-3">{val.meta.title}</div>
-              <div className="text-xs font-semibold text-[#808080]">
+              <div className="font-bold pt-3 px-1">{val.meta.title}</div>
+              <div className="text-xs font-semibold text-[#808080] px-1">
                 Owned by{" "}
                 {`0x${val.owner[2]}${val.owner[3]}${
                   val.owner[4]

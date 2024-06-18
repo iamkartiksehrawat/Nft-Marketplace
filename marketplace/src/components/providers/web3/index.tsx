@@ -53,13 +53,15 @@ const Web3Provider = ({ children }) => {
         const authToken = localStorage.getItem("authToken");
         if (authToken && !usr) {
           const provider = new ethers.BrowserProvider(window.ethereum as any);
+          console.log("chla h ye to");
           const contract = await loadContract("NftMarket", provider);
+          console.log("output bhi aaya h");
           const signer = await provider.getSigner();
           const signedcontract = contract.connect(signer);
           const address = await signer.getAddress();
           try {
             const res = await axios.post(
-              "http://localhost:3000/api/auth/token",
+              `${import.meta.env.VITE_BACKEND_URL}/api/auth/token`,
               {
                 address,
                 authToken,
@@ -113,7 +115,7 @@ const Web3Provider = ({ children }) => {
       const address = await signer.getAddress();
 
       const challengeResponse = await axios.post(
-        "http://localhost:3000/api/auth/challenge",
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/challenge`,
         {
           address,
         }
@@ -124,7 +126,7 @@ const Web3Provider = ({ children }) => {
       const signature = await signer.signMessage(challenge);
 
       const verifyResponse = await axios.post(
-        "http://localhost:3000/api/auth/verify",
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/verify`,
         {
           address,
           signature,

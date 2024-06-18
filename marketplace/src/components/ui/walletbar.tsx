@@ -63,7 +63,7 @@ const Walletbar = ({
                     ) : avatar.data ? (
                       <AvatarImage src={avatar.data} />
                     ) : (
-                      <AvatarFallback className="font-bold">U</AvatarFallback>
+                      <AvatarFallback className="font-bold">{username.isLoading ?  <IconLoader2 className="h-4 w-4 animate-spin" /> : username.data ? username.data.charAt(0) : '' }</AvatarFallback>
                     )}
                   </Avatar>
                 </NavigationMenuTrigger>

@@ -58,7 +58,7 @@ const CreateNft = () => {
   const [price, setPrice] = useState("");
   const [priceerror, setpriceerror] = useState(false);
   const [nftURI, setnftURI] = useState("");
-  const [successmodal, setsuccessmodal] = useState(true);
+  const [successmodal, setsuccessmodal] = useState(false);
   const navigate = useNavigate();
 
   const handleTraitChange = (index, event) => {
@@ -96,8 +96,7 @@ const CreateNft = () => {
       setloading(false);
     } else {
       if (nftURI == "") {
-        console.log(nftURI, "nftttt uri h bhai ");
-        console.log("ye vala chla");
+        
         toast({
           variant: "destructive",
           title: "Error Occured",

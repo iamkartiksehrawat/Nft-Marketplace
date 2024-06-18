@@ -51,7 +51,7 @@ export const loadContract = async (
   const artifacts = await res.json();
 
   const adrs = await fetch(
-    "../../../contracts/contract-address-localhost.json"
+    "../../../contracts/contract-address-sepolia.json"
   );
   const address = await adrs.json();
 

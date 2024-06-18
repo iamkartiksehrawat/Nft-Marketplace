@@ -1,10 +1,13 @@
 node_modules
 .env
+key.json
 
 # Hardhat files
 /cache
 /artifacts
-
+cache
+/ignition/deployments
+keys.json
 # TypeChain files
 /typechain
 /typechain-types

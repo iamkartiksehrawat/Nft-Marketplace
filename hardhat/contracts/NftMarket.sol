@@ -4,6 +4,8 @@ pragma solidity >=0.4.44 <0.9.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+//author: @iamkartiksehrawat
+
 contract NftMarket is ERC721URIStorage,Ownable {
 
   uint public listingPrice = 0.025 ether;
