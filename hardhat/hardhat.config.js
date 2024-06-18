@@ -1,15 +1,18 @@
 require("@nomicfoundation/hardhat-toolbox");
+const keys = require("./keys.json")
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  defaultNetwork: "localhost",
+  defaultNetwork: "sepolia",
   networks: {
-    hardhat: {
-      chainId: 1337,
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/${keys.INFURA_KEY}`,
+      accounts: [keys.METAMASK_PRIVATE_KEY],
     },
-    localhost: {
-      url: "http://127.0.0.1:8545", // Local Hardhat node
-      chainId: 1337, // Chain ID for Hardhat local network
+  },
+  etherscan: {
+    apiKey: {
+      sepolia: keys.ETHERSCAN_KEY,
     },
   },
   solidity: "0.8.20",

@@ -13,13 +13,22 @@ const Footer = () => {
           <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg ">
             MarketPlace
           </div>
-          <Link to={"/"} className="text-[#585858] font-semibold">
+          <Link
+            to={"/"}
+            className="text-[#585858] font-semibold hover:text-[#747474]"
+          >
             Home
           </Link>
-          <Link to={"/explore"} className="text-[#585858] font-semibold">
+          <Link
+            to={"/explore"}
+            className="text-[#585858] font-semibold hover:text-[#747474]"
+          >
             Explore
           </Link>
-          <Link to={"/create"} className="text-[#585858] font-semibold">
+          <Link
+            to={"/create"}
+            className="text-[#585858] font-semibold hover:text-[#747474]"
+          >
             Create
           </Link>
         </div>
@@ -29,7 +38,10 @@ const Footer = () => {
             <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg">
               Account
             </div>
-            <Link to={"/profile"} className="text-[#585858] font-semibold">
+            <Link
+              to={"/profile"}
+              className="text-[#585858] font-semibold hover:text-[#747474]"
+            >
               Profile
             </Link>
           </div>
@@ -41,7 +53,12 @@ const Footer = () => {
           <div className="font-bold text-sm sm:text-md xl:text-2xl md:text-lg">
             Community
           </div>
-          <div className="text-[#585858] font-semibold">Learn</div>
+          <Link
+            to={"/learn/home"}
+            className="text-[#585858] font-semibold hover:text-[#747474]"
+          >
+            Profile
+          </Link>
         </div>
       </div>
       <div className="flex items-center justify-center border-b-2 mx-8">

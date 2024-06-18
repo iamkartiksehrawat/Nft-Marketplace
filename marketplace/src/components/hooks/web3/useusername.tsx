@@ -15,14 +15,14 @@ export const hookFactory: UsernameHookFactory =
   ({ provider }) =>
   () => {
     const { usr } = useWeb3();
-    const authToken = localStorage.getItem("authToken");
     const { data, mutate, isLoading, ...swr } = useSWR(
       provider ? "web3/useusername" : null,
       async () => {
         if (!usr) return null;
+        const authToken = localStorage.getItem("authToken");
         try {
           const res = await axios.get(
-            "http://localhost:3000/api/details/username",
+            `${import.meta.env.VITE_BACKEND_URL}/api/details/username`,
             {
               headers: {
                 Authorization: authToken,

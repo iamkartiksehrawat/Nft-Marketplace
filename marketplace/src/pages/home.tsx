@@ -10,7 +10,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import axios from "axios";
-
+import { useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -63,9 +63,12 @@ const Subscribepage = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/subscribe", {
-        email,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/subscribe`,
+        {
+          email,
+        }
+      );
 
       if (response.status == 200) {
         toast({
@@ -124,63 +127,40 @@ const Subscribepage = () => {
   );
 };
 
-const CardGrid = () => {
-  const arr = [
-    {
-      creator: "hansi flick",
-      title: "Sakura Special Edition",
-      src: "/images/hero-section/Latest/latest-01.jpg",
-      price: "0.59",
-    },
-    {
-      creator: "hansi flick",
-      title: "Bored Ape",
-      src: "/images/hero-section/Latest/latest-02.webp",
-      price: "0.12",
-    },
-    {
-      creator: "Beanz",
-      title: "Red Bubble",
-      src: "/images/hero-section/Latest/latest-03.jpg",
-      price: "0.02",
-    },
-    {
-      creator: "ramesh",
-      title: "Vee Con Ticket",
-      src: "/images/hero-section/Latest/latest-04.png",
-      price: "0.38",
-    },
-    {
-      creator: "Overworld",
-      title: "Electro",
-      src: "/images/hero-section/Latest/latest-05.png",
-      price: "0.75",
-    },
-    {
-      creator: "Kartik",
-      title: "Hape Social",
-      src: "/images/hero-section/Latest/latest-06.jpg",
-      price: "1.12",
-    },
-  ];
+const Nftlearn = () => {
+  const [articleList, setArticleList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticleList = async () => {
+      try {
+        const response = await axios.get("/articles/articlelist.json");
+        if (response.status != 200) {
+          throw new Error("Failed to fetch data");
+        }
+        setArticleList(response.data.articles);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching article list:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchArticleList();
+  }, []);
 
   return (
-    <div className="flex w-full p-4 justify-center items-center">
-      <Card>
-        <CardContent className="p-12 pb-6 max-[640px]:p-6 max-[640px]:pb-3">
-          <div className="text-4xl font-bold pb-4">Latest Drops</div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-6 ">
-            {arr.map((val, index) => (
-              <Nftcard val={val} indx={index} />
-            ))}
-          </div>
-          <Button variant="outline" className="w-full mt-6">
-            View All
-            <IconArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+    <>
+      {isLoading ? (
+        <></>
+      ) : (
+        <Smcarosel
+          arr={articleList}
+          Card={Infocard}
+          title="NFT 101"
+        ></Smcarosel>
+      )}
+    </>
   );
 };
 
@@ -295,33 +275,11 @@ const Carosel = () => {
 };
 
 const Home = () => {
-  const arr1 = [
-    {
-      src: "/images/Learn/Learn-01.png",
-      title: "What is an NFT",
-    },
-    {
-      src: "/images/Learn/Learn-02.png",
-      title: "How to buy NFT",
-    },
-    {
-      src: "/images/Learn/Learn-03.png",
-      title: "How to sell NFT",
-    },
-    {
-      src: "/images/Learn/Learn-04.png",
-      title: "What is a Wallet",
-    },
-  ];
-
   return (
     <div className="pt-[60px] font-inter">
       <HeroSection />
       <Carosel />
-      {/* <CardGrid />
-      <Smcarosel arr={arr2} Card={Nftcard} title="Azuki"></Smcarosel>
-      <Smcarosel arr={arr3} Card={Nftcard} title="Hape Social"></Smcarosel> */}
-      <Smcarosel arr={arr1} Card={Infocard} title="NFT 101"></Smcarosel>
+      <Nftlearn />
       <Subscribepage />
     </div>
   );

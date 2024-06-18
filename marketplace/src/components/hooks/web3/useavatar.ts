@@ -22,7 +22,7 @@ export const hookFactory: AvatarHookFactory =
         if (!usr || !authToken) return null;
         try {
           const res = await axios.get(
-            "http://localhost:3000/api/details/avatar",
+            `${import.meta.env.VITE_BACKEND_URL}/api/details/avatar`,
             {
               headers: {
                 Authorization: authToken,

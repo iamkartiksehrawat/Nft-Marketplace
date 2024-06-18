@@ -7,6 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useWeb3 } from "@/components/providers/web3";
+import axios from "axios";
+import { toast, useToast } from "@/components/ui/use-toast";
 
 const Nftonsale = ({ arr }) => {
   return arr.length == 0 ? (
@@ -38,159 +40,26 @@ const Explore = () => {
   const [isloading, setloading] = useState<boolean>(true);
   const [currstate, setcurrstate] = useState<number>(0);
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [presetdata, setpresetdata] = useState([]);
 
-  const presetdata = [
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Hape/NFT-01.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Hape/NFT-02.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Hape/NFT-03.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Hape/NFT-04.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Hape/NFT-05.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Overworld/NFT-03.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Overworld/NFT-02.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Overworld/NFT-01.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Overworld/NFT-08.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-    {
-      tokenId: 2,
-      price: 0.04,
-      creator: "0x4213p2343400",
-      isListed: true,
-      owner: "0xx2231p033",
-      meta: {
-        title: "Sasuke Special Edition",
-        src: "/images/Overworld/NFT-06.jpg",
-        skills: {
-          type: "hape",
-          background: "gra",
-        },
-      },
-    },
-  ];
+  useEffect(() => {
+    const fetchdata = async () => {
+      setloading(true);
+      try {
+        const response = await axios.get("/images/Explore/explore.json");
+        if (response.status != 200) {
+          throw new Error("Failed to fetch data");
+        }
+        setpresetdata(response.data.list);
+      } catch (error) {
+        console.error("Error fetching article list:", error);
+      } finally {
+        setloading(false);
+      }
+    };
+    fetchdata();
+  }, []);
 
   useEffect(() => {
     let timeoutId;
@@ -266,6 +135,21 @@ const Explore = () => {
     <div className=" pt-28 font-inter">
       <div className="text-4xl font-bold px-8 py-6">Explore</div>
       <Nftonsale arr={presetdata} />
+      <div className="w-full p-8 pt-2">
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => {
+            toast({
+              variant: "destructive",
+              title: "Login required",
+              description: `Please login to view all NFTs`,
+            });
+          }}
+        >
+          View all
+        </Button>
+      </div>
     </div>
   );
 };

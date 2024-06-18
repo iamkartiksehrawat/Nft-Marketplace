@@ -63,7 +63,7 @@ const Navbar = () => {
             Explore
           </Link>
           <Link
-            to="#"
+            to="/learn/home"
             className="text-[#808080] hover:text-accent-foreground focus:text-accent-foreground transition-colors font-semibold hidden min-[640px]:inline-flex"
           >
             Learn

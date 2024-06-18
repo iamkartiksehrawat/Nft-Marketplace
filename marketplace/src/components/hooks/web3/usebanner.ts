@@ -22,7 +22,7 @@ export const hookFactory: BannerHookFactory =
         if (!usr || !authToken) return null;
         try {
           const res = await axios.get(
-            "http://localhost:3000/api/details/banner",
+            `${import.meta.env.VITE_BACKEND_URL}/api/details/banner`,
             {
               headers: {
                 Authorization: authToken,

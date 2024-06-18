@@ -13,6 +13,7 @@ import {
   IconShoppingCart,
   IconListDetails,
   IconPuzzle,
+  IconShare2,
   IconFileCheck,
 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
@@ -90,6 +91,8 @@ const Asset = () => {
     }
   };
 
+  console.log(data?.meta.description);
+
   return (
     <>
       {data ? (
@@ -126,30 +129,43 @@ const Asset = () => {
                     <IconCurrencyEthereum />
                     {data.price} ETH
                   </div>
-                  <Button
-                    className={`w-full bg-blue-600 font-bold text-white hover:bg-blue-800 active:bg-blue-800 ${
-                      ((account.data == data.owner && data.isListed) ||
-                        (account.data != data.owner && !data.isListed)) &&
-                      "hidden"
-                    }`}
-                    disabled={isbuying}
-                    onClick={data.isListed ? handlebuynft : handlelistnft}
-                  >
-                    {data.isListed ? (
-                      <IconShoppingCart className=" mr-2" />
-                    ) : (
-                      <IconFileCheck className=" mr-2" />
-                    )}
-                    {data.isListed ? "Buy Now" : "List Now"}
-                  </Button>
-                  {account.data == data.owner && data.isListed && (
+                  <div className="w-full grid grid-cols-2 gap-4">
                     <Button
-                      className="w-full bg-[#474747] text-white"
-                      disabled={true}
+                      className={`w-full bg-blue-600 font-bold text-white hover:bg-blue-800 active:bg-blue-800 ${
+                        ((account.data == data.owner && data.isListed) ||
+                          (account.data != data.owner && !data.isListed)) &&
+                        "hidden"
+                      }`}
+                      disabled={isbuying}
+                      onClick={data.isListed ? handlebuynft : handlelistnft}
                     >
-                      Already Listed
+                      {data.isListed ? (
+                        <IconShoppingCart className=" mr-2" />
+                      ) : (
+                        <IconFileCheck className=" mr-2" />
+                      )}
+                      {data.isListed ? "Buy Now" : "List Now"}
                     </Button>
-                  )}
+                    {account.data == data.owner && data.isListed && (
+                      <Button
+                        className="bg-[#474747] text-white"
+                        disabled={true}
+                      >
+                        Already Listed
+                      </Button>
+                    )}
+                    <a
+                      href={data.meta.src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full"
+                    >
+                      <Button className="w-full text-black font-bold bg-white hover:bg-[#d5d5d5] active:bg-[#d5d5d5]">
+                        <IconShare2 className="mr-2" />
+                        View Original Media
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
               <Card className=" overflow-hidden bg-[#1a1a1a] mt-4">
@@ -160,12 +176,12 @@ const Asset = () => {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-2 p-4 font-semibold text-[#a0a0a0]">
                   {data.meta.traits.map((trait, indx) => (
-                    <div key={indx}>
-                      {Object.entries(trait).map(([key, value]) => (
-                        <div key={key}>
-                          <span className="text-white">{key}:</span> {value}
-                        </div>
-                      ))}
+                    <div
+                      className="flex flex-col gap-1 bg-[#3d3d3d] p-3 rounded-lg hover:bg-[#444444]"
+                      key={indx}
+                    >
+                      <span className="text-sm">{trait.key}</span>
+                      <span className="text-lg text-white">{trait.value}</span>
                     </div>
                   ))}
                 </CardContent>
@@ -178,12 +194,6 @@ const Asset = () => {
                 </CardHeader>
                 <CardContent className="p-4">
                   <div className="flex flex-col gap-3">
-                    {" "}
-                    <div className="text-[#a0a0a0] text-xs py-2">
-                      Bored Ape Yacht Club (BAYC) is a popular collection of
-                      10,000 unique, hand-drawn NFTs featuring cartoon apes,
-                      each with distinct traits and accessories.
-                    </div>
                     <div className="text-[#a0a0a0] text-xs ">
                       <span className="font-semibold  ">Creator : </span>
                       {data.creator}
@@ -191,6 +201,11 @@ const Asset = () => {
                     <div className="text-[#a0a0a0] text-xs ">
                       <span className="font-semibold">Owner : </span>
                       {data.owner}
+                    </div>{" "}
+                    <div className="text-[#a0a0a0] text-xs py-4 border-t-[1px]">
+                      <p className="whitespace-pre-wrap leading-relaxed">
+                        {data.meta.description}
+                      </p>
                     </div>
                   </div>
                 </CardContent>

@@ -240,7 +240,7 @@ const Usermodal = ({ openmodal, setmodalopen }) => {
           throw new Error("User entered empty string");
         }
         const response = await axios.post(
-          "http://localhost:3000/api/details/username",
+          `${import.meta.env.VITE_BACKEND_URL}/api/details/username`,
           {
             username: usr,
           },
@@ -324,7 +324,7 @@ const Bannermodal = ({ openmodal, setmodalopen, setloading }) => {
       try {
         if (authToken) {
           const response = await axios.post(
-            "http://localhost:3000/api/details/banner",
+            `${import.meta.env.VITE_BACKEND_URL}/api/details/banner`,
             formData,
             {
               headers: {
@@ -405,7 +405,7 @@ const Imagemodal = ({ openmodal, setmodalopen, setloading }) => {
       try {
         if (authToken) {
           const response = await axios.post(
-            "http://localhost:3000/api/details/avatar",
+            `${import.meta.env.VITE_BACKEND_URL}/api/details/avatar`,
             formData,
             {
               headers: {
@@ -549,7 +549,7 @@ const Usrinfo = () => {
             <AvatarImage src={avatar.data} />
           ) : (
             <AvatarFallback className="font-bold text-5xl group-hover:opacity-35 ">
-              U
+              {username.isLoading ?  <IconLoader2 className="h-4 w-4 animate-spin" /> : username.data ? username.data.charAt(0) : '' }
             </AvatarFallback>
           )}
         </Avatar>
