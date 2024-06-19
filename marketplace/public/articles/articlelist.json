@@ -1,0 +1,10 @@
+{
+  "count": 1,
+  "articles": [
+    {
+      "image": "/articles/article-1/main_image.png",
+      "description": "Apolio's guide to NFTs. A step-by-step introduction to what you need to know.",
+      "heading": "What is NFT"
+    }
+  ]
+}
