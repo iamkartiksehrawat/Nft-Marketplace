@@ -8,7 +8,7 @@
       "owner": "0xx2231p033",
       "meta": {
         "title": "Azuki #8280",
-        "src": "/images/Explore/images/NFT-01.jpg",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822697/NFT-01_dnuhdl.jpg",
         "skills": {
           "type": "",
           "background": ""
@@ -23,7 +23,7 @@
       "owner": "0x82231p032",
       "meta": {
         "title": "HAPE #1005",
-        "src": "/images/Explore/images/NFT-02.jpg",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822697/NFT-02_or9fe2.jpg",
         "skills": {
           "type": "",
           "background": ""
@@ -38,7 +38,7 @@
       "owner": "0x99231p039",
       "meta": {
         "title": "VADER #0007",
-        "src": "/images/Explore/images/NFT-03.png",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822701/NFT-10_vtx2m8.jpg",
         "skills": {
           "type": "",
           "background": ""
@@ -53,7 +53,7 @@
       "owner": "0xx4931p032",
       "meta": {
         "title": "BEANZ #1965",
-        "src": "/images/Explore/images/NFT-04.png",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822698/NFT-04_sxwgi5.png",
         "skills": {
           "type": "",
           "background": ""
@@ -70,7 +70,7 @@
         "title": "HAPE #0921",
         "src": "/images/Explore/images/NFT-05.jpg",
         "skills": {
-          "type": "",
+          "type": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822699/NFT-05_kw5lms.jpg",
           "background": ""
         }
       }
@@ -83,7 +83,7 @@
       "owner": "0xe1131p022",
       "meta": {
         "title": "BEANZ #1223",
-        "src": "/images/Explore/images/NFT-06.png",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822698/NFT-06_m0jzxq.png",
         "skills": {
           "type": "",
           "background": ""
@@ -100,7 +100,7 @@
         "title": "VEECON #95",
         "src": "/images/Explore/images/NFT-07.webp",
         "skills": {
-          "type": "",
+          "type": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822714/NFT-07_hgnae6.webp",
           "background": ""
         }
       }
@@ -113,7 +113,7 @@
       "owner": "0zx2131p055",
       "meta": {
         "title": "HAPE #0984",
-        "src": "/images/Explore/images/NFT-08.jpg",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822700/NFT-08_wcqkyb.avif",
         "skills": {
           "type": "",
           "background": ""
@@ -128,7 +128,7 @@
       "owner": "0e32931p087",
       "meta": {
         "title": "BEANZ #654",
-        "src": "/images/Explore/images/NFT-09.png",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822700/NFT-09_xdmxod.png",
         "skills": {
           "type": "",
           "background": ""
@@ -143,7 +143,7 @@
       "owner": "0ewz931p632",
       "meta": {
         "title": "VADER #0005",
-        "src": "/images/Explore/images/NFT-10.jpg",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822698/NFT-03_klrtfi.jpg",
         "skills": {
           "type": "",
           "background": ""

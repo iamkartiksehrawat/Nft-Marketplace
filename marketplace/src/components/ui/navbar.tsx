@@ -43,7 +43,7 @@ const Navbar = () => {
       )}
     >
       <img
-        src="/logos/logo_with_name.png"
+        src="https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822482/logo_with_name_wplelr.png"
         className="w-auto h-8 md:h-14 cursor-pointer"
         alt="Logo"
         onClick={() => navigate("/")}

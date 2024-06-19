@@ -63,6 +63,7 @@ const Nftcard = ({ val }) => {
               <div className="aspect-square overflow-hidden rounded-sm">
                 <img
                   src={val.meta.src}
+                  loading="lazy"
                   className="object-cover rounded-sm transform transition-transform duration-300 ease-in-out group-hover:scale-110"
                 ></img>
               </div>

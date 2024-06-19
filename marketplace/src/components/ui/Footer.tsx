@@ -60,7 +60,7 @@ const Footer = () => {
       </div>
       <div className="flex items-center justify-center border-b-2 mx-8">
         <img
-          src="/logos/logo_with_name.png"
+          src="https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822482/logo_with_name_wplelr.png"
           className="w-[100px] py-6"
           alt="Logo"
         ></img>

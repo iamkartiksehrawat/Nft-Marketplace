@@ -1,7 +1,7 @@
 {
   "date": "2024-06-18",
   "title": "What is NFT?",
-  "main_image": "/articles/article-1/main_image.png",
+  "main_image": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822776/main_image_rnkzbb.png",
   "description": "Apolio's guide to NFTs. A step-by-step introduction to what you need to know.",
   "paragraphs": [
     {
@@ -20,7 +20,9 @@
         "When someone creates, transfers, buys, sells, or otherwise does something with an NFT, that all gets recorded on the blockchain. This is what enables authentication.This record serves as a permanent statement of authenticity that can be viewed or accessed by anyone. Today, when you buy a piece of art or a collector's item, it typically comes with a paper certificate of authenticity, which you must then keep track of forever. It is easily forgotten, lost or destroyed, creating a very fragile system for authenticity. Blockchain’s offer a simple and more secure solution to this long standing issue of proving authenticity.",
         ""
       ],
-      "images": ["/articles/article-1/img1.png"]
+      "images": [
+        "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822774/img1_zohqdo.png"
+      ]
     }
   ]
 }
