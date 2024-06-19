@@ -47,7 +47,7 @@ function generateRandomName() {
 
 const CreateNft = () => {
   const { usr, Web3api } = useWeb3();
-  const { contract, provider } = Web3api;
+  const { contract } = Web3api;
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
@@ -96,7 +96,6 @@ const CreateNft = () => {
       setloading(false);
     } else {
       if (nftURI == "") {
-        
         toast({
           variant: "destructive",
           title: "Error Occured",

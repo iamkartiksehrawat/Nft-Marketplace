@@ -1,14 +1,14 @@
 import Nftcard from "@/components/ui/Nftcard";
-import { useListedNfts, useAccount, useNetwork } from "@/components/hooks/web3";
+import { useListedNfts, useNetwork } from "@/components/hooks/web3";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useWeb3 } from "@/components/providers/web3";
 import axios from "axios";
-import { toast, useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const Nftonsale = ({ arr }) => {
   return arr.length == 0 ? (
@@ -27,7 +27,7 @@ const Nftonsale = ({ arr }) => {
   ) : (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 p-8">
       {arr.map((val, index) => (
-        <Nftcard val={val} indx={index} key={index} />
+        <Nftcard val={val} key={index} />
       ))}
     </div>
   );

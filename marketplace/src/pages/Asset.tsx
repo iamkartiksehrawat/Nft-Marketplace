@@ -18,10 +18,8 @@ import {
 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { useWeb3 } from "@/components/providers/web3";
 
 const Asset = () => {
-  const { usr } = useWeb3();
   let { tokenid } = useParams();
   const { nfts } = useListedNfts();
   const { nfts: ownednfts } = useOwnedNfts();

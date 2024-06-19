@@ -1,7 +1,4 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useAccount } from "../hooks/web3";
 import { useWeb3 } from "../providers/web3";
 
 const Footer = () => {

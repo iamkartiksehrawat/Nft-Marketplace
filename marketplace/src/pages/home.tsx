@@ -1,11 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import {
-  IconBolt,
-  IconShare2,
-  IconArrowRight,
-  IconCurrencyEthereum,
-} from "@tabler/icons-react";
+import { IconBolt, IconShare2 } from "@tabler/icons-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
@@ -21,7 +16,6 @@ import {
 } from "@/components/ui/carousel";
 
 import { Input } from "@/components/ui/input";
-import Nftcard from "@/components/ui/Nftcard";
 import Infocard from "@/components/ui/Infocard";
 import Smcarosel from "@/components/ui/Smcarosel";
 import { useNavigate } from "react-router-dom";
