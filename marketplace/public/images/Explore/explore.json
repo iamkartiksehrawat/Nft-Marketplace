@@ -1,0 +1,154 @@
+{
+  "list": [
+    {
+      "tokenId": 0,
+      "price": 0.2,
+      "creator": "",
+      "isListed": false,
+      "owner": "0xx2231p033",
+      "meta": {
+        "title": "Azuki #8280",
+        "src": "/images/Explore/images/NFT-01.jpg",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.6,
+      "creator": "",
+      "isListed": false,
+      "owner": "0x82231p032",
+      "meta": {
+        "title": "HAPE #1005",
+        "src": "/images/Explore/images/NFT-02.jpg",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 1.1,
+      "creator": "",
+      "isListed": false,
+      "owner": "0x99231p039",
+      "meta": {
+        "title": "VADER #0007",
+        "src": "/images/Explore/images/NFT-03.png",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.12,
+      "creator": "",
+      "isListed": false,
+      "owner": "0xx4931p032",
+      "meta": {
+        "title": "BEANZ #1965",
+        "src": "/images/Explore/images/NFT-04.png",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.98,
+      "creator": "",
+      "isListed": false,
+      "owner": "0x3931p087",
+      "meta": {
+        "title": "HAPE #0921",
+        "src": "/images/Explore/images/NFT-05.jpg",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.23,
+      "creator": "",
+      "isListed": false,
+      "owner": "0xe1131p022",
+      "meta": {
+        "title": "BEANZ #1223",
+        "src": "/images/Explore/images/NFT-06.png",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.12,
+      "creator": "",
+      "isListed": false,
+      "owner": "0ew2931p019",
+      "meta": {
+        "title": "VEECON #95",
+        "src": "/images/Explore/images/NFT-07.webp",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.87,
+      "creator": "",
+      "isListed": false,
+      "owner": "0zx2131p055",
+      "meta": {
+        "title": "HAPE #0984",
+        "src": "/images/Explore/images/NFT-08.jpg",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 0.87,
+      "creator": "",
+      "isListed": false,
+      "owner": "0e32931p087",
+      "meta": {
+        "title": "BEANZ #654",
+        "src": "/images/Explore/images/NFT-09.png",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    },
+    {
+      "tokenId": 0,
+      "price": 1.3,
+      "creator": "",
+      "isListed": false,
+      "owner": "0ewz931p632",
+      "meta": {
+        "title": "VADER #0005",
+        "src": "/images/Explore/images/NFT-10.jpg",
+        "skills": {
+          "type": "",
+          "background": ""
+        }
+      }
+    }
+  ]
+}

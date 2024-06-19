@@ -1,0 +1,26 @@
+{
+  "date": "2024-06-18",
+  "title": "What is NFT?",
+  "main_image": "/articles/article-1/main_image.png",
+  "description": "Apolio's guide to NFTs. A step-by-step introduction to what you need to know.",
+  "paragraphs": [
+    {
+      "heading": "Fungible vs. non-fungible",
+      "content": [
+        "Before we dive into NFTs, it’s important to understand the “non-fungible” part of “non-fungible token.” When an item is fungible, it means it’s interchangeable with another of the same item. A classic example is a $1 dollar bill: you could swap dollars with someone and you’d both still have $1.",
+        "Non-fungible, on the other hand, means the item is totally unique, and therefore has its own unique value. For example, two cars of the same make and model might have different values based on how many miles are on the odometer, their accident records, or if it was previously owned by a celebrity. "
+      ],
+      "images": []
+    },
+    {
+      "heading": "How do NFTs work?",
+      "content": [
+        "NFTs operate on blockchain technology. The blockchain is basically a large, digital, public record. The most popular blockchains are distributed across many nodes (read: people’s computers), which is why you’ll hear them described as “decentralized.” ",
+        "So instead of a central company-owned server, the blockchain is distributed across a peer-to-peer network. Not only does this ensure that the blockchain remains immutable, it also allows the node operators to earn money, instead of a single company. Because the blockchain records and preserves history, it is uniquely positioned to transform provable authenticity and digital ownership.",
+        "When someone creates, transfers, buys, sells, or otherwise does something with an NFT, that all gets recorded on the blockchain. This is what enables authentication.This record serves as a permanent statement of authenticity that can be viewed or accessed by anyone. Today, when you buy a piece of art or a collector's item, it typically comes with a paper certificate of authenticity, which you must then keep track of forever. It is easily forgotten, lost or destroyed, creating a very fragile system for authenticity. Blockchain’s offer a simple and more secure solution to this long standing issue of proving authenticity.",
+        ""
+      ],
+      "images": ["/articles/article-1/img1.png"]
+    }
+  ]
+}
