@@ -27,12 +27,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import axios from "axios";
 import { mutate } from "swr";
-import { error } from "console";
-import { useWeb3 } from "@/components/providers/web3";
 
 const Salenft = () => {
   const { nfts } = useOwnedNfts();
@@ -59,7 +56,7 @@ const Salenft = () => {
   ) : (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 p-2 ">
       {arr.map((val, index) => (
-        <Nftcard val={val} indx={index} key={index} />
+        <Nftcard val={val} key={index} />
       ))}
     </div>
   );
@@ -89,7 +86,7 @@ const Notlistednft = () => {
   ) : (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 p-2 ">
       {arr.map((val, index) => (
-        <Nftcard val={val} indx={index} key={index} />
+        <Nftcard val={val} key={index} />
       ))}
     </div>
   );
@@ -150,7 +147,7 @@ const Creatednft = () => {
   ) : (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 p-2">
       {arr?.map((val, index) => (
-        <Nftcard val={val} indx={index} key={index} />
+        <Nftcard val={val} key={index} />
       ))}
     </div>
   );
@@ -191,7 +188,7 @@ const Ownednft = () => {
   ) : (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 xl:grid-cols-5 p-2">
       {arr.map((val, index) => (
-        <Nftcard val={val} indx={index} key={index} />
+        <Nftcard val={val} key={index} />
       ))}
     </div>
   );
@@ -549,7 +546,13 @@ const Usrinfo = () => {
             <AvatarImage src={avatar.data} />
           ) : (
             <AvatarFallback className="font-bold text-5xl group-hover:opacity-35 ">
-              {username.isLoading ?  <IconLoader2 className="h-4 w-4 animate-spin" /> : username.data ? username.data.charAt(0) : '' }
+              {username.isLoading ? (
+                <IconLoader2 className="h-4 w-4 animate-spin" />
+              ) : username.data ? (
+                username.data.charAt(0)
+              ) : (
+                ""
+              )}
             </AvatarFallback>
           )}
         </Avatar>

@@ -1,18 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { IconCurrencyEthereum } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useEffect, useState } from "react";
 import { useWeb3 } from "../providers/web3";
 
 const Showmodal = ({ openmodal, setmodalopen }) => {
@@ -40,7 +38,7 @@ const Showmodal = ({ openmodal, setmodalopen }) => {
   );
 };
 
-const Nftcard = ({ val, indx }) => {
+const Nftcard = ({ val }) => {
   const navigate = useNavigate();
   const [openmodal, setmodalopen] = useState(false);
   const { usr } = useWeb3();
