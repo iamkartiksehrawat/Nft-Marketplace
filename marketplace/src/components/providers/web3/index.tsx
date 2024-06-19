@@ -13,9 +13,11 @@ const pageReload = () => {
   window.location.reload();
 };
 
-const setGlobalListeners = (ethereum: MetaMaskInpageProvider) => {
-  ethereum?.on("chainChanged", pageReload);
-  ethereum?.on("accountsChanged", pageReload);
+const setGlobalListeners = (ethereum: MetaMaskInpageProvider, usr: boolean) => {
+  if (usr) {
+    ethereum?.on("chainChanged", pageReload);
+    ethereum?.on("accountsChanged", pageReload);
+  }
 };
 
 const removeGlobalListeners = (ethereum: MetaMaskInpageProvider) => {
@@ -44,7 +46,7 @@ const Web3Provider = ({ children }) => {
 
   useEffect(() => {
     const handlelistner = () => {
-      setGlobalListeners(window.ethereum);
+      setGlobalListeners(window.ethereum, usr);
     };
 
     const checktoken = async () => {
@@ -53,9 +55,9 @@ const Web3Provider = ({ children }) => {
         const authToken = localStorage.getItem("authToken");
         if (authToken && !usr) {
           const provider = new ethers.BrowserProvider(window.ethereum as any);
-          console.log("chla h ye to");
+
           const contract = await loadContract("NftMarket", provider);
-          console.log("output bhi aaya h");
+
           const signer = await provider.getSigner();
           const signedcontract = contract.connect(signer);
           const address = await signer.getAddress();
@@ -159,37 +161,6 @@ const Web3Provider = ({ children }) => {
       setLoading(false);
     }
   };
-
-  // useEffect(() => {
-  //   async function initWeb3() {
-  //     try {
-  //       const provider = new ethers.BrowserProvider(window.ethereum as any);
-  //       const contract = await loadContract("NftMarket", provider);
-
-  //       const signer = await provider.getSigner();
-  //       const signedcontract = contract.connect(signer);
-
-  //       setGlobalListeners(window.ethereum, setweb3api);
-  //       setweb3api(
-  //         createWeb3State({
-  //           ethereum: window.ethereum,
-  //           provider,
-  //           contract: signedcontract as unknown as Contract,
-  //           isLoading: false,
-  //         })
-  //       );
-  //     } catch (e: any) {
-  //       setweb3api((api) =>
-  //         createWeb3State({
-  //           ...(api as any),
-  //           isLoading: false,
-  //         })
-  //       );
-  //     }
-  //   }
-  //   initWeb3();
-  //   return () => removeGlobalListeners(window.ethereum);
-  // }, []);
 
   return (
     <Web3Context.Provider value={{ Web3api, usr, connectweb3, isLoading }}>

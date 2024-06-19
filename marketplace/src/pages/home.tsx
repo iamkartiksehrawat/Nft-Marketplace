@@ -88,7 +88,10 @@ const Subscribepage = () => {
     <div className="flex pt-12 p-8 justify-between items-center w-full max-[640px]:p-4 max-[640px]:pt-12 pb-0 max-sm:justify-center">
       <div className="flex relative justify-center items-center max-w-[45%] max-sm:hidden">
         <div className="absolute bg-[#f0770f] bottom-0 left-[25%] w-1/3 h-1/3 rounded-xl blur-[108px] opacity-95 z-[-2]"></div>
-        <img src="/images/hero-section/Subscribe/Subscribe.png" />
+        <img
+          src="https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822363/Subscribe_t1cbwf.png"
+          loading="lazy"
+        />
       </div>
       <div className="flex flex-col lg:gap-6 gap-2 max-sm:text-center max-sm:items-center">
         <div className="font-bold sm:text-2xl md:text-4xl lg:text-5xl">
@@ -175,7 +178,7 @@ const HeroSection = () => {
             <IconBolt className="mr-2 h-4 w-4" />
             Explore Now
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" onClick={() => navigate("/learn/home")}>
             Learn More <IconShare2 className="ml-2 h-4 w-4" />
           </Button>
         </div>
@@ -184,7 +187,7 @@ const HeroSection = () => {
         <div className="absolute bg-[#f534ff] top-[25%] left-[50%] w-1/3 h-1/3 rounded-xl blur-[128px] opacity-55 z-[-2]"></div>
         <div className="absolute bg-[#2fe3ff] top-[40%] right-[60%] w-1/2 h-1/2 rounded-xl blur-[128px] opacity-25 z-[-2]"></div>
         <img
-          src="/images/hero-section/hero-section-shop.png"
+          src="https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822349/hero-section-shop_wv8zjs.png"
           className="w-11/12 h-auto"
         ></img>
       </div>
@@ -192,29 +195,26 @@ const HeroSection = () => {
   );
 };
 
+type CarouselItem = {
+  src: string;
+  heading: string;
+  isvid: boolean;
+};
+
 const Carosel = () => {
-  const arr = [
-    {
-      src: "/images/hero-section/Banner/featured-hape.jpg",
-      heading: "Bored Ape new Collection",
-      isvid: false,
-    },
-    {
-      src: "/images/hero-section/Banner/featured-azuki.jpg",
-      heading: "Buy Azuki",
-      isvid: false,
-    },
-    {
-      src: "/images/hero-section/Banner/featured-beanz.jpg_large",
-      heading: "All time top seller Beanz",
-      isvid: false,
-    },
-    {
-      src: "/images/hero-section/Banner/featured-overworld.jpg",
-      heading: "Overworld Incarna",
-      isvid: false,
-    },
-  ];
+  const [arr, setarr] = useState<CarouselItem[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("/images/Carousel/carousel.json")
+      .then((response) => {
+        console.log(response.data);
+        setarr(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching the carousel data:", error);
+      });
+  }, []);
 
   return (
     <div className="flex py-12 justify-center w-full">
@@ -240,6 +240,7 @@ const Carosel = () => {
                       <img
                         src={val.src}
                         className="w-full h-full object-cover rounded-sm"
+                        loading="lazy"
                       ></img>
                     ) : (
                       <video src={val.src} muted />

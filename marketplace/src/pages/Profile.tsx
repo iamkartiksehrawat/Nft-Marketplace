@@ -525,7 +525,12 @@ const Usrinfo = () => {
           </div>
         ) : (
           <img
-            src={banner.data ? banner.data : "/images/banner_default.png"}
+            src={
+              banner.data
+                ? banner.data
+                : "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822855/banner_default_cacwf1.png"
+            }
+            loading="lazy"
             className="object-cover w-full h-full object-center group-hover:opacity-35"
           />
         )}
