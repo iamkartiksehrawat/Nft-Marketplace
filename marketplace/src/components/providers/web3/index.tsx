@@ -9,15 +9,17 @@ import { Contract, ethers } from "ethers";
 import { MetaMaskInpageProvider } from "@metamask/providers";
 import axios from "axios";
 
-const pageReload = () => {
-  window.location.reload();
+const pageReload = (usr: boolean) => {
+  console.log("request to aayi ");
+  console.log(usr);
+  if (usr) {
+    window.location.reload();
+  }
 };
 
 const setGlobalListeners = (ethereum: MetaMaskInpageProvider, usr: boolean) => {
-  if (usr) {
-    ethereum?.on("chainChanged", pageReload);
-    ethereum?.on("accountsChanged", pageReload);
-  }
+  ethereum?.on("chainChanged", () => pageReload(usr));
+  ethereum?.on("accountsChanged", () => pageReload(usr));
 };
 
 const removeGlobalListeners = (ethereum: MetaMaskInpageProvider) => {
@@ -95,10 +97,12 @@ const Web3Provider = ({ children }) => {
       }
     };
 
-    checktoken();
+    if (!usr) {
+      checktoken();
+    }
     handlelistner();
     return () => removeGlobalListeners(window.ethereum);
-  }, []);
+  }, [usr]);
 
   const connectweb3 = async () => {
     setLoading(true);
