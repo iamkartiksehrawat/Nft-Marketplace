@@ -36,7 +36,7 @@ exports.getToken = async (req, res) => {
     });
   } catch (e) {
     console.error(e);
-    throw e;
+    res.status(400).json(e);
   }
 };
 
@@ -68,7 +68,7 @@ exports.getChallenge = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    throw error;
+    res.status(400).json(error);
   }
 };
 
@@ -94,7 +94,7 @@ exports.getVerify = async (req, res) => {
     res.json({ token });
   } catch (error) {
     console.log(error);
-    throw error;
+    res.status(400).json(error);
   }
 };
 
