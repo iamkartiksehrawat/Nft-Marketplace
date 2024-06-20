@@ -68,9 +68,9 @@
       "owner": "0x3931p087",
       "meta": {
         "title": "HAPE #0921",
-        "src": "/images/Explore/images/NFT-05.jpg",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822699/NFT-05_kw5lms.jpg",
         "skills": {
-          "type": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822699/NFT-05_kw5lms.jpg",
+          "type": "",
           "background": ""
         }
       }
@@ -98,9 +98,9 @@
       "owner": "0ew2931p019",
       "meta": {
         "title": "VEECON #95",
-        "src": "/images/Explore/images/NFT-07.webp",
+        "src": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822714/NFT-07_hgnae6.webp",
         "skills": {
-          "type": "https://res.cloudinary.com/dk4sgz8pm/image/upload/v1718822714/NFT-07_hgnae6.webp",
+          "type": "",
           "background": ""
         }
       }

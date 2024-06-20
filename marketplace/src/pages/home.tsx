@@ -208,7 +208,6 @@ const Carosel = () => {
     axios
       .get("/images/Carousel/carousel.json")
       .then((response) => {
-        console.log(response.data);
         setarr(response.data);
       })
       .catch((error) => {

@@ -452,9 +452,9 @@ const CreateNft = () => {
                 Please first login with metamask to create Nfts
               </div>
               <div className="flex justify-center items-center pt-6">
-                <Button variant="outline" onClick={() => {}}>
-                  Learn How to Login with Metamask
-                </Button>
+                <a href="https://metamask.io/" target="_blank">
+                  <Button variant="outline">Login with Metamask</Button>
+                </a>
               </div>
             </CardContent>
           </Card>
