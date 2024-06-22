@@ -85,19 +85,19 @@ const Navbar = () => {
             <SheetContent className="max-w-[50%]">
               <div className="flex items-center justify-center border-[1px] rounded-lg hover:bg-[#161616] mb-4 mt-8">
                 <IconCirclePlus className="w-4 h-4 mr-2" />
-                <Link to="#" className="font-semibold text-lg py-2">
+                <Link to="/create" className="font-semibold text-lg py-2">
                   Create
                 </Link>
               </div>
               <div className="flex items-center justify-center border-[1px] rounded-lg hover:bg-[#161616] mb-4">
                 <IconBrandSafari className="w-4 h-4 mr-2" />
-                <Link to="#" className="font-semibold text-lg py-2">
+                <Link to="/explore" className="font-semibold text-lg py-2">
                   Explore
                 </Link>
               </div>
               <div className="flex items-center justify-center border-[1px] rounded-lg hover:bg-[#161616] mb-4">
                 <IconBomb className="w-4 h-4 mr-2" />
-                <Link to="#" className="font-semibold text-lg py-2">
+                <Link to="/learn/home" className="font-semibold text-lg py-2">
                   Learn
                 </Link>
               </div>

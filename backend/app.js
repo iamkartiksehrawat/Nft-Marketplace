@@ -17,7 +17,7 @@ app.use("/api", api);
 /// LISTEN & DATABASE CONNECTION
 mongoose
   .connect(
-    "mongodb+srv://sehrawatkar:4VMJeqTtbE3bMJiG@cluster0.asoz7zk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    `mongodb+srv://sehrawatkar:${process.env.DB_KEY}@cluster0.asoz7zk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
   )
   .then(() => {
     console.log("connected to mongo db");

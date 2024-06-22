@@ -10,6 +10,7 @@ import CreateNft from "./pages/CreateNft";
 import LearnNftHome from "./pages/LearnNftHome";
 import LearnNft from "./pages/LearnNft";
 import ScrollToTop from "./utils/ScrollTotop";
+import NotFoundpage from "./pages/NotFoundpage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/asset/:tokenid" element={<Asset />} />
           </Route>
+          <Route path="*" element={<NotFoundpage />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
