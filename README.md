@@ -54,7 +54,7 @@ This Project was developed with the following technologies:
   - [Mongoose](https://github.com/Automattic/mongoose)
 
 #### **Database**
-  - [Mongodb](https://expressjs.com/pt-br/)
+  - [Mongodb](https://www.mongodb.com/)
   - [Cloudinary](https://cloudinary.com/documentation)
   - [Pinata](https://docs.pinata.cloud/introduction)
 
@@ -66,8 +66,8 @@ This Project was developed with the following technologies:
   - [Ethers](https://github.com/ethers-io/ethers.js)
 
 #### **Deployment**
-  - Frontend deployed on [Vercel](https://github.com/ethereum/solidity)
-  - Backend deployed on [Render](https://github.com/NomicFoundation/hardhat)
+  - Frontend deployed on [Vercel](https://vercel.com/home)
+  - Backend deployed on [Render](https://render.com/pricing)
   - Smart Contract Deployed on Sepolia and [Verified](https://sepolia.etherscan.io/address/0x1ef0ab04e7c5499c48a54ca28057cbe40d5881f1) via [Etherscan](https://etherscan.io/)
 
 
